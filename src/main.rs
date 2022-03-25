@@ -29,6 +29,7 @@ fn loop_timer(mut system_info: SystemInfo) {
     system_info.print_system_name();
     system_info.print_total_memory();
     system_info.print_percentage_used_memory();
+    system_info.print_components();
 
     loop_timer(system_info);
 }
@@ -103,5 +104,11 @@ impl SystemInfo {
         }
 
         println!("Used memory: {} {:.1}% ➡️ {:.1}gb", bar, percentage, used_memory / 1000000.0);
-    } 
+    }
+    
+    fn print_components(&self) {
+        for component in self.sys.components() {
+            println!("{:?}", component);
+        }
+    }
 }
